@@ -15,6 +15,8 @@ angular.module('appAdminApp')
         //alasql('SELECT * INTO XLSX("table.xlsx",{headers:true}) \
         //            FROM HTML("#table1",{headers:true,skipdisplaynone:true})');
 
+  		 $http.get('/api/customers/excel/');
+
 	};
 
   })
@@ -57,6 +59,10 @@ angular.module('appAdminApp')
 
 	    obj.getCustomer = function(id){
 	    	return $http.get(serviceBase + '/' + id);
+	    }
+
+	    obj.getExcel = function(){
+	    	return $http.get(serviceBase + '/excel');
 	    }
 
 	    obj.insertCustomer = function (customer) {

@@ -11,7 +11,8 @@ router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-//router.download('/:id', controller.destroy);
+
+router.get('/excel', controller.excel);
 
 
 module.exports = router;
