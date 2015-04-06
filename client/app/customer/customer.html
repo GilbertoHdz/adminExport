@@ -1,0 +1,53 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container">
+	<div class="row">
+		<header>
+			<h3>{{message}}</h3>
+		</header>
+			<nav class= "navbar navbar-default" role= "navigation" >
+				<div class= "navbar-header" >
+					<a class="btn btn-lg btn-success" href="/edit-customer/0">
+						<i class="glyphicon glyphicon-plus"></i>&nbsp;Add new Customer
+					</a>
+				</div>
+			</nav>
+			<div class="col-md-12" data-ng-show="customers.length != 0">
+				<table class="table table-striped table-bordered" id="table1">
+					<thead>
+						<th>Name&nbsp;</th>
+						<th>Info&nbsp;</th>
+						<th>Address&nbsp;</th>
+						<th>Init&nbsp;</th>
+						<th>Finish&nbsp;</th>
+						<th>Active&nbsp;</th>
+						<th></th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in customers">
+							<td>{{data.name}}</td>
+							<td>{{data.info}}</td>
+							<td>{{data.author}}</td>
+							<td>{{ data.f_ini | date : "dd/MM/yyyy" }}</td>
+							<td>{{ data.f_fin | date : "dd/MM/yyyy" }}</td>
+							<td>{{data.active}}</td>
+							<td>
+								<a href="/edit-customer/{{data._id}}" class="btn">&nbsp;
+									<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit	Customer
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<br/>
+				
+		 	</div>
+			
+		 	<div class="col-md-12" data-ng-show="customers.length == 0">
+		 		<div class="col-md-12">
+					<h4>No customers found</h4>
+		 		</div>
+		 	</div>
+		 	<br>
+		 	<button ng-click="exportData()">Export</button>
+	</div>
+</div>

@@ -1,0 +1,98 @@
+<div class="container">
+<h1>Hi List</h1>
+		<div class="row">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class= "navbar-header">
+					<a href= "/customer" class="navbar-brand">
+						<i class="glyphicon glyphicon-th-large"></i>Customers List
+					</a>
+					<a data-ng-show="customer._id" class= "navbar-brand" href= "/edit-customer/0">
+						<i class="glyphicon glyphicon-plus"></i>Create Customer
+					</a>
+					<a data-ng-show="customer._id" class= "navbar-brand pull-right">
+						<i class="glyphicon glyphicon-edit"></i> Currently Editing Customer Number: {{customer._id}}
+					</a>
+				</div>
+			</nav>
+			
+			<header>
+				<h3>{{message}}</h3>
+			</header>
+
+			<div class="col-md-12">
+				<form role="form" name="myForm" class="form-horizontal">
+					<div class="row">
+
+						<div class="form-group" ng-class="{error: myForm.name.$invalid}">
+							<label for="" class="col-md-2" >Name </label>
+							<div class="col-md-4">
+								<input  name="name" data-ng-model="customer.name" 
+										type="text" class="form-control" placeholder="Your name" required/>
+								<span 	ng-show="myForm.name.$dirty && myForm.name.$invalid" class="help-inline">Name Required</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="" class="col-md-2">Info </label>
+							<div class="col-md-4">
+								<input  name="info" data-ng-model="customer.info" 
+										type= "text" class= "form-control" placeholder="Your info" required/>
+								<span 	ng-show="myForm.info.$dirty && myForm.info.$invalid" class="help-inline">Info Required</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="" class="col-md-2">Author </label>
+							<div class="col-md-4">
+								<input  name="author" data-ng-model="customer.author" 
+										type= "text" class= "form-control" placeholder="Your author" required/>
+								<span 	ng-show="myForm.author.$dirty && myForm.author.$invalid" class="help-inline">Author Required</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="" class="col-md-2">Updated </label>
+							<div class="col-md-4">
+						        <label class="control-label">
+						        	<i class="fa fa-calendar"></i> 
+						        	<i class="fa fa-arrows-h"></i>
+						        	<i class="fa fa-calendar"></i> Date range <small>(dynamic)</small>
+					        	</label><br>
+						        <div class="form-group col-xs-6">
+						          <input type="text" class="form-control" ng-model="customer.f_ini"  
+						          		 data-max-date="{{customer.f_fin}}" placeholder="From" bs-datepicker>
+						        </div>
+						        <div class="form-group col-xs-6">
+						          <input type="text" class="form-control" ng-model="customer.f_fin"  
+						          		 data-min-date="{{customer.f_ini}}" placeholder="Until" bs-datepicker>
+						        </div>       
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="" class="col-md-2">Active </label>
+								<div class="col-md-2">
+								<input type="checkbox" class="form-control" name="active"  ng-model="customer.active" />
+								<span class="help-inline"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="" class="col-md-2"></label>
+							<div class="col-md-4">
+								<a href="/customer" class="btn">Cancel</a>
+								<button data-ng-click="saveCustomer(customer);"
+										ng-disabled="isClean() || myForm.$invalid"
+										class="btn btn-primary">{{buttonText}}</button>
+								<button data-ng-click="deleteCustomer(customer)"
+										data-ng-show="customer._id" class="btn btn-warning">Delete</button>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+</div>
