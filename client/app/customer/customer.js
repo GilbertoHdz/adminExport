@@ -18,5 +18,13 @@ angular.module('appAdminApp')
               } else {return ;}
           }
         }
+      }).when('/customer/archivo', {
+        templateUrl: 'app/customer/customer.html',
+        controller: 'CustomerCtrl',
+        resolve: {
+          customer: function(services, $route){
+              return services.getExcel();
+          }
+        }
       });
   });

@@ -3,11 +3,11 @@
 angular.module('appAdminApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    },{
       'title': 'Customer',
       'link': '/customer'
+    },{
+      'title': 'Documento',
+      'link': '/permiso'
     }];
 
     $scope.isCollapsed = true;

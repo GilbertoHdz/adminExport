@@ -1,26 +1,13 @@
 'use strict';
 
 angular.module('appAdminApp')
-  .controller('CustomerCtrl', function ($scope, $http, socket, services) {
+  .controller('CustomerCtrl', function ($scope, $http, socket, services, customer) {
     $scope.message = '777 Super Fucking Luky';
     services.getCustomers().then(function(data){
 		$scope.customers = data.data;
 	});
-
-    $scope.exportData = function () {
-	
-	    //alasql('SELECT name as NAME INTO XLSX("../template.xlsx",{headers:true}) FROM ?',[$scope.customers]);
-
-        //alasql('SELECT * INTO XLSX("customers.xlsx",{headers:true}) FROM HTML("#table1",{headers:true})');
-        //alasql('SELECT * INTO XLSX("table.xlsx",{headers:true}) \
-        //            FROM HTML("#table1",{headers:true,skipdisplaynone:true})');
-
-  		 $http.get('/api/customers/excel/');
-
-	};
-
   })
-  .controller('ListCustomerCtrl', function ($scope, $rootScope, $http, $routeParams, socket, customer, services) {
+  .controller('ListCustomerCtrl', function ($scope, $rootScope, $http, $routeParams, socket, customer, services, $location) {
     	var customerID = ($routeParams.customerID) ? $routeParams.customerID : 0;
 		$rootScope.title = (customerID != 0) ? 'Edit Customer' : 'Add Customer';
 		$scope.message = $rootScope.title;
@@ -43,6 +30,8 @@ angular.module('appAdminApp')
 
 	    $scope.deleteCustomer = function(customer) {
 	      $http.delete('/api/customers/' + customer._id);
+	      //$location.path( "/customer" );
+	      $scope.customer = '';
 	    };
 
 	    $scope.$on('$destroy', function () {
@@ -54,16 +43,17 @@ angular.module('appAdminApp')
 		var obj = {};
 
 	    obj.getCustomers = function(){
-	    	return $http.get(serviceBase + '/');
+	    	return $http.get(serviceBase);
 	    }
 
 	    obj.getCustomer = function(id){
 	    	return $http.get(serviceBase + '/' + id);
 	    }
 
-	    obj.getExcel = function(){
-	    	return $http.get(serviceBase + '/excel');
+	    obj.getExcel = function(id){
+	    	return $http.get('/api/customers/archivo');
 	    }
+
 
 	    obj.insertCustomer = function (customer) {
 	    	return $http.post(serviceBase + '/', {
