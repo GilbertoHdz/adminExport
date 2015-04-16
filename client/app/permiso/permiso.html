@@ -1,6 +1,14 @@
 
 
 <style type="text/css">
+  body{
+  	background-color: #B8B8B8;
+  }
+
+  .container2{
+	background-color: #FFF;
+  }
+
   .separador {
     color: white;
     background-color: black;
@@ -46,6 +54,10 @@ input[type="text"].largo {
 	width: 80%;
 }
 
+input[type="text"].medio {
+	width: 100%;
+}
+
 .col3{
 	float: left;
 	margin-left: 70px;
@@ -56,7 +68,50 @@ input[type="text"].largo {
 }
 
 .stylLetra{
-	text-transform: san-serif;
+	font-family: Times;
+	font-style: italic;
+}
+
+.left{
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.padding{
+	display: block;
+	margin-right: 100px;
+}
+
+.padding2{
+	display: block;
+	margin-right: 130px;
+}
+
+.max{
+	display: block;
+	width: 80%;
+}
+
+/* Flaired edges, by Tomas Theunissen */
+
+hr.linea {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+	margin: 40px 0px -25px 0px;
+}
+
+.dropdown-menu {
+	font-size: 12px;
+}
+
+.datepicker.dropdown-menu {
+	width: 200px;
+	height: 220px;
 }
 
 </style>
@@ -68,140 +123,160 @@ input[type="text"].largo {
 
 <form action="" class="encuadre">
 
-
-<div class="encabezado">
-	<h2 for="">Solicitud de permiso</h2>
-</div>
-
-<div class="separador">
-	<label for="">Información sobre el permiso</label>
-</div>
-
-<br>
-
-<div class="campo">
-	<label for="">Nombre:</label>
-	<input type="text" class="largo" autofocus />
-</div>
-
-<br>
-
-<label for="">Tipo de contrato</label>
-
-<div class="row">
-  <div class="col3">
-		<input type="checkbox"  name="tipo" value="nomina">Nomina
-  </div>
-  <div class="col3">
-    	<input type="checkbox"  name="tipo" value="honorario">Honorario
-  </div>
-  <div class="col3">
-   	 	<input type="checkbox"  name="tipo" value="proyecto">Por Proyecto
-  </div>
-  <div class="col3">
-    	<input type="checkbox"  name="tipo" value="tesita">Tesista / Residente / Servicio S.
-  </div>
-</div>
-
-<br>
-
-<div class="campo">
-	<label for="">Numero Empleado:</label>
-	<input type="text" />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<label for="">Departamento:</label>
-	<input type="text" />
-</div>
-
-<br>
-
-<div class="campo">
-	<label for="">Jefe inmediato:</label>
-	<input type="text" class="largo" />
-</div>
-
-<br>
-
-<label for="">Tipo de permiso solicitado</label>
-
-<div class="row">
-	<div class="col3">
-		<input type="checkbox" name="tipo" value="enfermedad">Enfermedad
+	<div class="encabezado">
+		<h2 for="">Solicitud de permiso</h2>
 	</div>
-	<div class="col3">
-	    <input type="checkbox" name="tipo" value="vacaciones">Vacaciones
+
+	<div class="separador">
+		<label for="">Información sobre el permiso</label>
 	</div>
-	<div class="col3">
-	    <input type="checkbox" name="tipo" value="comisión">Comisión
+
+	<br>
+
+	<div class="campo">
+		<label for="">Nombre:</label>
+		<input type="text" class="largo" autofocus />
 	</div>
-	<div class="col3">
-	    <input type="checkbox" name="tipo" value="tramites">Tramites escolares
+
+	<br>
+
+	<label for="">Tipo de contrato:</label>
+
+	<div class="row">
+	  <div class="col3">
+			<input type="checkbox"  name="tipo" value="nomina">Nomina
+	  </div>
+	  <div class="col3">
+	    	<input type="checkbox"  name="tipo" value="honorario">Honorario
+	  </div>
+	  <div class="col3">
+	   	 	<input type="checkbox"  name="tipo" value="proyecto">Por Proyecto
+	  </div>
+	  <div class="col3">
+	    	<input type="checkbox"  name="tipo" value="tesita">Tesista / Residente / Servicio S.
+	  </div>
 	</div>
-</div>
 
-<div class="row">
-  <div class="col3">
-	<input type="checkbox" name="tipo" value="pater">Maternidad/Paternidad &nbsp;
-  </div>
-
-  <div class="col9">
-    <input type="checkbox" name="tipo" value="otro">Otro (especifiqué) 
-	<input type="text" >
-  </div>
-</div>
-
-<br>
-
-<div class="campo">
-	<label for="">Días de permiso:  Desde:</label>
-	<input type="text" />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<label for="">Hasta:</label>
-	<input type="text" />
-</div>
-
-<br>
-
-<div class="campo">
-	<label for="">Motivo del permiso</label><br>
-	<textarea name="" id="" cols="80" rows="5"></textarea><br>
-	<p>(Las solicitudes de permiso se deben presentar como mínimo un día antes del 
-		primer día en que se estará ausente, a excepción del permiso por enfermedad. )</p>
-</div>
-
-<hr class="linea">
-
-<div class="campo">
-	<label class="stylLetra">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firma empleado</label>
-	<span class="span"></span>
-	<label class="stylLetra">Fecha</label>
-</div>
-
-<div class="separador">
-	<label for="">Aprobación del director</label>
-</div>
-
-<br>
-
-<div class="campo">
-	<input type="checkbox" name="tipo" value="aprovada">Aprovada <br>
-	<input type="checkbox" name="tipo" value="rechazada">Rechazada <br>
-	<label for="">Comentarios:</label>
-	<br><br>
-	<br><br><br>
-	<br><br><br>
-</div>
+	<br>
 
 
+		<div class="col1">
+			<label for="">Numero Empleado:</label>
+			<input type="text" />
+				<div class="padding right">
+					<label for="">Departamento:</label>
+					<input type="text" />
+				</div>
+		</div>
 
-<hr class="linea">
-<div class="campo">
-	<label class="stylLetra">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firma del director</label>
-	<span class="span"></span>
-	<label class="stylLetra">Fecha</label>
-</div>
+
+	<br>
+
+	<div class="campo">
+		<label for="">Jefe inmediato:</label>
+		<input type="text" class="largo" />
+	</div>
+
+	<br>
+
+	<label for="">Tipo de permiso solicitado:</label>
+
+	<div class="row">
+		<div class="col3">
+			<input type="checkbox" name="tipo" value="enfermedad">Enfermedad
+		</div>
+		<div class="col3">
+		    <input type="checkbox" name="tipo" value="vacaciones">Vacaciones
+		</div>
+		<div class="col3">
+		    <input type="checkbox" name="tipo" value="comisión">Comisión
+		</div>
+		<div class="col3">
+		    <input type="checkbox" name="tipo" value="tramites">Tramites escolares
+		</div>
+	</div>
+
+	<div class="row">
+	  <div class="col3">
+		<input type="checkbox" name="tipo" value="pater">Maternidad/Paternidad &nbsp;
+	 	<div class="right">
+		    <input type="checkbox" name="tipo" value="otro">Otro (especifiqué) 
+			<input type="text" />
+	  </div>
+	  </div>
+
+	  
+	</div>
+
+	<br>
+
+	<div class="col1" class='date datepicker'>
+		<label for="">Días de permiso:  Desde:</label>
+		<input class="date datepicker input-group-addon" type="text">
+
+		<div class="padding2 right" class='date'>
+			<label for="">Hasta:</label>
+			<input class="date datepicker input-group-addon" type="text" />
+		</div>
+	</div>
+
+
+	<br>
+
+	<div class="campo">
+		<label for="">Motivo del permiso:</label><br>
+		<div class="max">
+			<textarea name="" id="" cols="80" rows="4" maxlength="350"></textarea><br>
+		</div>
+		<p class="stylLetra">(Las solicitudes de permiso se deben presentar como mínimo un día antes del 
+			primer día en que se estará ausente, a excepción del permiso por enfermedad. )</p>
+	</div>
+
+	<hr class="linea">
+
+	<div class="campo">
+		<label class="stylLetra">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firma empleado</label>
+
+		<div class="col2 right">
+			<label class="stylLetra">Fecha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		</div>
+	</div>
+
+	<div class="separador">
+		<label for="">Aprobación del director</label>
+	</div>
+
+	<br>
+
+	<div class="campo">
+		<input type="checkbox" name="tipo" value="aprovada">Aprovada <br>
+		<input type="checkbox" name="tipo" value="rechazada">Rechazada <br>
+		<label for="">Comentarios:</label>
+		<br><br>
+		<br><br><br>
+		<br><br><br>
+	</div>
+
+
+
+	<hr class="linea">
+	<div class="campo">
+		<label class="stylLetra">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firma del director</label>
+		<div class="col2 right" style="padding-left: 5em;">
+			<label class="stylLetra">Fecha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		</div>
+	</div>
 
 </form>
-
+<a href="/customer" class="btn">&nbsp;
+	<i class="glyphicon glyphicon-file"></i>&nbsp; Exportar a PDF
+</a>
 </div>
+
 <br><br><br><br>
+
+<script type="text/javascript" charset="utf-8" async defer>
+$('.datepicker').datepicker({
+   "language": "es"
+});
+</script>
