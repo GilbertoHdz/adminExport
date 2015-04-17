@@ -1,7 +1,9 @@
 'use strict';
 
 var _ = require('lodash');
+var fs = require('fs');
 var Permiso = require('./permiso.model');
+var PDFDocument = require('pdfkit');
 
 // Get list of permisos
 exports.index = function(req, res) {
@@ -57,3 +59,50 @@ exports.destroy = function(req, res) {
 function handleError(res, err) {
   return res.send(500, err);
 }
+
+
+// Get list of permisos
+exports.getPdf = function(req, res) {
+  console.log(__dirname + 'client/template.xlsx');
+  doc.pipe(fs.createWriteStream('/ruta/al/archivo.pdf'));
+
+  doc.pipe(res);    
+
+  doc.font('fonts/helvetica.ttf')
+   .fontSize(25)
+   .text('Helvetica rocks!', 100, 100);
+
+  doc.addPage()
+   .fontSize(25)
+   .text('Acá vienen gráficos!', 100, 100);
+
+  doc.save()
+     .moveTo(100, 150)
+     .lineTo(100, 250)
+     .lineTo(200, 250)
+     .fill("#FF3300");
+
+  doc.circle(280, 200, 50)
+     .fill("#6600FF");
+
+  doc.scale(0.6)
+     .translate(470, 130)
+     .path('M 250,75 L 323,301 131,161 369,161 177,301 z')
+     .fill('green', 'even-odd')
+     .restore();
+
+  doc.text('And here is some wrapped text...', 100, 300)
+     .font('Times-Roman', 13)
+     .moveDown()
+     .text(lorem, {
+       width: 412,
+       align: 'justify',
+       indent: 30,
+       columns: 2,
+       height: 300,
+       ellipsis: true
+     });
+
+  doc.end();
+  res.send('Pdf');
+};
