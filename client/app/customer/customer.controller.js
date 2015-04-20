@@ -6,6 +6,16 @@ angular.module('appAdminApp')
     services.getCustomers().then(function(data){
 		$scope.customers = data.data;
 	});
+
+    $scope.exportExcel = function() {
+      //$http.get('/api/customers/excel');
+
+      var pom = document.createElement('a'); 
+      pom.setAttribute('href', 'api/customers/excel'); 
+      pom.setAttribute('download', ''); //Colocar para que no aparesca esta leyenda en el consol "http://localhost:3000/customers/excel".
+      pom.click();
+    };
+
   })
   .controller('ListCustomerCtrl', function ($scope, $rootScope, $http, $routeParams, socket, customer, services, $location) {
     	var customerID = ($routeParams.customerID) ? $routeParams.customerID : 0;
@@ -51,7 +61,7 @@ angular.module('appAdminApp')
 	    }
 
 	    obj.getExcel = function(id){
-	    	return $http.get('/api/customers/archivo');
+	    	return $http.get('/api/customers/excel');
 	    }
 
 
