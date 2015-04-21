@@ -12,6 +12,8 @@ angular.module('appAdminApp')
        pom.setAttribute('download', ''); //Colocar para que no aparesca esta leyenda en el consol "http://localhost:3000/customers/excel".
        pom.click();
 
+       console.log('pdf');
+
     };
 
   });
