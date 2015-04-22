@@ -8,6 +8,9 @@ angular.module('appAdminApp')
     },{
       'title': 'Documento',
       'link': '/permiso'
+    },{
+      'title': 'Archivo',
+      'link': '/archivo'
     }];
 
     $scope.isCollapsed = true;

@@ -1,0 +1,79 @@
+<style type="text/css" media="screen">
+
+	.button {
+	    -moz-appearance: button;
+	    /* Firefox */
+	    -webkit-appearance: button;
+	    /* Safari and Chrome */
+	    padding: 5px;
+	    margin: 10px;
+	    width: 90px;
+	}
+
+	.drop-box {
+	    background: #F8F8F8;
+	    border: 5px dashed #DDD;
+	    width: 200px;
+	    height: 100px;
+	    text-align: center;
+	    padding-top: 25px;
+	    margin: 10px;
+	}
+
+	.dragover {
+	    border: 5px dashed blue;
+	}
+
+	input[type="text"] {
+		height: 20px;
+		width: 200px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #555;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 2px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	}
+
+</style>
+
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+
+
+	<div class="container">
+		{{message}}
+
+		<br>
+
+		<div >Username
+		    <input type="text" ng-model="username"></br></br>
+		    <input type="checkbox" ng-model="multiple">upload multiple file</br></br>
+		    watching model:
+		    <div class="button" ng-file-select ng-model="files" ng-multiple="multiple">Select File</div>
+		    
+		    on file change:
+		    <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
+		   
+		    Drop File:
+		    <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
+		        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+		        accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+		    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+		    <ul>
+		        <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+		    </ul>
+		</div>
+
+
+		<br>
+
+
+	</div>
+</div>
+

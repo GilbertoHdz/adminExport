@@ -7,7 +7,8 @@ angular.module('appAdminApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'mgcrea.ngStrap'
+  'mgcrea.ngStrap', 
+  'angularFileUpload'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
