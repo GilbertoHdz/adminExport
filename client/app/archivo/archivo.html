@@ -45,35 +45,64 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 
-
-	<div class="container">
+<div class="container">
 		{{message}}
 
-		<br>
+	<br>
 
-		<div >Username
-		    <input type="text" ng-model="username"></br></br>
-		    <input type="checkbox" ng-model="multiple">upload multiple file</br></br>
-		    watching model:
-		    <div class="button" ng-file-select ng-model="files" ng-multiple="multiple">Select File</div>
-		    
-		    on file change:
-		    <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
-		   
-		    Drop File:
-		    <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
-		        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
-		        accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
-		    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
-		    <ul>
-		        <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
-		    </ul>
-		</div>
+	<div >Username
+	    <input type="text" ng-model="username"></br></br>
 
+	    <input type="checkbox" ng-model="multiple">upload multiple file</br></br>
 
-		<br>
-
+	    watching model:
+	    <div class="button" ng-file-select ng-model="files" ng-multiple="multiple">Select File</div>
+	    
+	    on file change:
+	    <div class="button" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">Select File</div>
+	   
+	    Drop File:
+	    <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
+	         drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+	         accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+	    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+	    
+	    <ul>
+	        <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+	    </ul>
 
 	</div>
-</div>
 
+	<br><br>
+
+	<div>
+		<div class="col-md-12" data-ng-show="archivos.length != 0">
+			<table class="table table-striped table-bordered" id="table1">
+				<thead>
+					<th>Name&nbsp;</th>
+					<th>IMG&nbsp;</th>
+					<th></th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in archivos">
+						<td>{{data.name}}</td>
+						<td>{{data.img}}</td>
+						<td>
+							<a href="/edit-customer/{{data._id}}" class="btn">&nbsp;
+								<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit	Customer
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<br/>
+			
+	 	</div>
+	</div>
+
+	<br>
+		 <img ng-src="{{img}}"/>
+
+	<br>
+
+</div>
