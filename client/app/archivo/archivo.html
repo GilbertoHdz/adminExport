@@ -86,10 +86,10 @@
 				<tbody>
 					<tr ng-repeat="data in archivos">
 						<td>{{data.name}}</td>
-						<td>{{data.img}}</td>
+						<td><img ng-src="data:{{data.img.contentType}};base64,{{data.img.data}}" height="50" width="50" /> </td>
 						<td>
 							<a href="/edit-customer/{{data._id}}" class="btn">&nbsp;
-								<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit	Customer
+								<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit
 							</a>
 						</td>
 					</tr>
@@ -101,7 +101,7 @@
 	</div>
 
 	<br>
-		 <img ng-src="{{img}}"/>
+		 <img ng-src="data:{{type}};base64,{{buffer}}"/>
 
 	<br>
 

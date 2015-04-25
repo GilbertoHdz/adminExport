@@ -7,7 +7,7 @@ var fs = require('fs');
 var ArchivoSchema = new Schema({
 
   name: String,
-  img: { data: Buffer, contentType: String }
+  img: { data: String, contentType: String }
 
 });
 

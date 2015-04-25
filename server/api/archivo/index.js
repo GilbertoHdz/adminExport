@@ -9,7 +9,6 @@ var multipartyMiddleware = multiparty();
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/getImage', controller.getImage);
 router.get('/:id', controller.show);
 router.post('/', multipartyMiddleware, controller.create);
 router.put('/:id', controller.update);

@@ -9,26 +9,15 @@ angular.module('appAdminApp')
     });
 
     servicesHttp.getArchivos().then(function(data){
-    	//angular.forEach(data.data, function(archivo, idx){
-    	//	//var base64data = new Buffer(archivo.img.data.data, 'binary').toString('base64');
-		//	//	console.log(base64data);
-	    //  console.log('*-------*');
-	    ////  console.log(archivo.img.data.data);
-	    ////  console.log(archivo.img.contentType);
-	    ////  console.log('///////');
-	    //    console.log(archivo.img.data.data.toString('base64'));
-	    //});
-
-    	console.log(data.data);
-		//$scope.customers = data.data;
+		$scope.archivos = data.data;
 	});
 
  
 
-	//servicesHttp.getArchivo('55383953452456dc1ac8953f').then(function(data){
-	//	$scope.img = data.data;
-	//	console.log(data);
-	//});
+	servicesHttp.getArchivo('553ad776966eb2501d1fdbc9').then(function(data){
+		$scope.buffer = data.data.img.data;
+		$scope.type = data.data.img.contentType;
+	});
  
     $scope.upload = function (files) {
 
@@ -39,6 +28,7 @@ angular.module('appAdminApp')
 
                 $upload.upload({
                     url: '/api/archivos/',
+                    name: 'remasterizado',
                     file: file
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
