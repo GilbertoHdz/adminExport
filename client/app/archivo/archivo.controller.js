@@ -3,43 +3,44 @@
 angular.module('appAdminApp')
   .controller('ArchivoCtrl', function ($scope, $upload, servicesHttp) {
     $scope.message = 'Hello Controller';
+    $scope.esOculto = false;
 
-    $scope.$watch('files', function () {
-        $scope.upload($scope.files);
-    });
+    //$scope.$watch('files', function () {
+  	//	if ($scope.files != undefined) { $scope.esOculto = false;}
+    //});
 
     servicesHttp.getArchivos().then(function(data){
-		$scope.archivos = data.data;
+		$scope.listaArchivos = data.data;
 	});
 
- 
+  	$scope.subir = function (archivos) {
+  		if(archivos && archivos != undefined && archivos.files.length) {
+		    carga(archivos.files);
+		}
 
-	servicesHttp.getArchivo('553ad776966eb2501d1fdbc9').then(function(data){
-		$scope.buffer = data.data.img.data;
-		$scope.type = data.data.img.contentType;
-	});
- 
-    $scope.upload = function (files) {
+	    $scope.archivo = undefined; 
+  	}
 
-        if (files && files.length) {
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                console.log(file);
+      function carga (archivos) {
+        for (var i = 0; i < archivos.length; i++) {
+             var file = archivos[i];
 
-                $upload.upload({
-                    url: '/api/archivos/',
-                    name: 'remasterizado',
-                    file: file
-                }).progress(function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                }).success(function (data, status, headers, config) {
-                	data = {name: 'asdasd'}
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                });
-            }
+    		$upload.upload({
+                url: '/api/archivos/',
+                name: 'remasterizado',
+                file: file
+            }).success(function (data, status, headers, config) {
+                //console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                //console.log('success');
+            	servicesHttp.getArchivos().then(function(data){
+					$scope.listaArchivos = data.data;
+				});
+            });
+
         }
     };
+
+
 
 
 

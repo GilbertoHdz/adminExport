@@ -11,6 +11,9 @@ angular.module('appAdminApp')
     },{
       'title': 'Archivo',
       'link': '/archivo'
+    },{
+      'title': 'Datos',
+      'link': '/persona'
     }];
 
     $scope.isCollapsed = true;
