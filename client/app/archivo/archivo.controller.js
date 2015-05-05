@@ -2,12 +2,8 @@
 
 angular.module('appAdminApp')
   .controller('ArchivoCtrl', function ($scope, $upload, servicesHttp) {
-    $scope.message = 'Hello Controller';
-    $scope.esOculto = false;
 
-    //$scope.$watch('files', function () {
-  	//	if ($scope.files != undefined) { $scope.esOculto = false;}
-    //});
+  	$scope.imageSrc = "";
 
     servicesHttp.getArchivos().then(function(data){
 		$scope.listaArchivos = data.data;
@@ -17,11 +13,10 @@ angular.module('appAdminApp')
   		if(archivos && archivos != undefined && archivos.files.length) {
 		    carga(archivos.files);
 		}
-
 	    $scope.archivo = undefined; 
   	}
 
-      function carga (archivos) {
+    function carga (archivos) {
         for (var i = 0; i < archivos.length; i++) {
              var file = archivos[i];
 
@@ -29,9 +24,11 @@ angular.module('appAdminApp')
                 url: '/api/archivos/',
                 name: 'remasterizado',
                 file: file
+           }).progress(function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                 	console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name + '\n' + $scope.log);
             }).success(function (data, status, headers, config) {
-                //console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                //console.log('success');
+                //$scope.log = 'file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n' + $scope.log;
             	servicesHttp.getArchivos().then(function(data){
 					$scope.listaArchivos = data.data;
 				});
@@ -39,10 +36,6 @@ angular.module('appAdminApp')
 
         }
     };
-
-
-
-
 
 }).factory("servicesHttp", ['$http', function($http) {
 		var serviceBase = '/api/archivos'
@@ -67,4 +60,20 @@ angular.module('appAdminApp')
 
 
 	    return obj;
-	}]);
+
+}]).directive('myUpload', [function () {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                scope.imageSrc = e.target.result;
+                scope.$apply();
+            }
+
+            elem.on('change', function() {
+                reader.readAsDataURL(elem[0].files[0]);
+            });
+        }
+    };
+}]);

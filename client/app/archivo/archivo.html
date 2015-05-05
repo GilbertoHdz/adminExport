@@ -46,26 +46,21 @@
 
 
 <div class="container">
-		{{message}}
+
+<br>
+
+ <div>
+    <form action="">
+        <input my-upload type="file" name="upload">
+    </form>
+<br>
+
+   <b>Preview:</b><br />
+   <i ng-hide="imageSrc">No image choosed</i>
+   <img ng-if="imageSrc" ng-src="{{imageSrc}}" alt="">
+</div>
+
 	<br>
-
-	<div>
-
-	    <input type="checkbox" ng-model="multiple">upload multiple file</br></br>
-
-	    Drop File:
-	    <div ng-file-drop ng-file-select ng-model="archivo.files" class="drop-box" 
-	         drag-over-class="dragover" ng-multiple="true" 
-	         accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
-	    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
-	    
-	    <ul>
-	        <li ng-repeat="f in archivo.files" style="font:smaller" blur="submitToggle">{{f.name}}</li>
-	    </ul>
-
-	</div>
-
-	<br><br>
 
 	<div>
 		<div class="col-md-12" data-ng-show="listaArchivos.length != 0">

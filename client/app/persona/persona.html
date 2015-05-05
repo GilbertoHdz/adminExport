@@ -1,5 +1,149 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
+<style type="text/css" media="screen">
+
+.myButton {
+	-moz-box-shadow:inset 0px 39px 0px -24px #ffffff;
+	-webkit-box-shadow:inset 0px 39px 0px -24px #ffffff;
+	box-shadow:inset 0px 39px 0px -24px #ffffff;
+	background-color:#ededed;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:12px;
+	padding:3px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background-color:#dfdfdf;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+input[type="text"] {
+	height: 20px;
+	width: 200px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+
+/* Rounded avatars */
+.avatar {
+	width: 100px;
+	height: 100px;
+	float: left;
+    margin-top: 1em;
+    margin-right: 1em;
+    position: relative;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
+
+</style>
+
 <div class="container">
-	{{message}}
+	<header>
+		<h3>{{message}}</h3>
+	</header>
+	<div class="row">
+
+		<form role="form" name="myForm" class="form-horizontal">
+
+			<div class="bloque">
+
+			<img class="avatar"  ng-src="{{imageSrc}}" alt="" />
+				
+				<br><br><br><br>
+			    <form action="">
+			    	<i ng-hide="imageSrc">No se ha seleccionado un avatar</i>
+			       <br>
+			        <input my-upload type="file" accept=".png,.jpg" ng-model="archivo.avatar"  
+			        		id="file1" style="display:none" />
+
+			        <div id="upfile1" class="myButton" >
+			         	<i class="glyphicon glyphicon-picture"></i>&nbsp; Seleccionar Avatar
+			        </div>
+
+			     <br>
+				   
+			    </form>
+
+				<br>
+
+				<div >
+					<label >Nombre </label>
+					<div>
+						<input  name="name" data-ng-model="customer.name" 
+								type="text" placeholder="Nombre" required/>
+					</div>
+				</div>
+
+				<div>
+					<label>Información </label>
+					<div>
+						<input  name="info" data-ng-model="customer.info" 
+								type= "text" placeholder="Información" required/>
+
+					</div>
+				</div>
+
+				<div>
+					<label>Skill </label>
+					<div>
+						<input  name="author" data-ng-model="customer.author" 
+								type= "text" placeholder="Skill" required/>
+					</div>
+				</div>
+
+				<div>
+					<label>Archivos</label>
+					<div>
+						<div>
+						    <div ng-file-drop ng-file-select ng-model="archivo.files" class="myButton" 
+						        ng-multiple="true" 
+						        accept="image/*,application/pdf">
+								<i class="glyphicon glyphicon-folder-open"></i>&nbsp;
+						        Seleccionar Archivos</div>
+
+						    <i>(pueden ser multiples)</i>
+						    
+						    <ul>
+						        <li ng-repeat="f in archivo.files" style="font:smaller" blur="submitToggle">{{f.name}}</li>
+						    </ul>
+
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</form>
+
+	</div>
 </div>
+
+<script>
+	$("#upfile1").click(function () {
+    $("#file1").trigger('click');
+});
+</script>
