@@ -6,7 +6,10 @@ var mongoose = require('mongoose'),
 var PersonaSchema = new Schema({
   name: String,
   info: String,
-  active: Boolean
+  skills: { type: Object},
+  active: { type: Boolean, default: true },
+  img: String,
+  archivos: [{type: mongoose.Schema.Types.ObjectId, ref: 'Archivo'}]
 });
 
 module.exports = mongoose.model('Persona', PersonaSchema);

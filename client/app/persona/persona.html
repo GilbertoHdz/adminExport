@@ -59,9 +59,22 @@ input[type="text"] {
     box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
 }
 
+#ulSkill {
+	list-style-type: none;
+
+}
+
+#skillCss a:link {
+	text-decoration: none;
+}
+
+.containerXS {
+	width: 65.50em;
+}
+
 </style>
 
-<div class="container">
+<div class="container containerXS">
 	<header>
 		<h3>{{message}}</h3>
 	</header>
@@ -69,9 +82,8 @@ input[type="text"] {
 
 		<form role="form" name="myForm" class="form-horizontal">
 
-			<div class="bloque">
-
-			<img class="avatar"  ng-src="{{imageSrc}}" alt="" />
+			<div class="col-xs-12">
+				<img class="avatar"  ng-src="{{imageSrc}}" alt="" />
 				
 				<br><br><br><br>
 			    <form action="">
@@ -80,65 +92,83 @@ input[type="text"] {
 			        <input my-upload type="file" accept=".png,.jpg" ng-model="archivo.avatar"  
 			        		id="file1" style="display:none" />
 
-			        <div id="upfile1" class="myButton" >
+			        <div id="upfile1" class="myButton">
 			         	<i class="glyphicon glyphicon-picture"></i>&nbsp; Seleccionar Avatar
 			        </div>
 
 			     <br>
 				   
 			    </form>
+			</div>
 
-				<br>
+			<br>
 
-				<div >
-					<label >Nombre </label>
-					<div>
-						<input  name="name" data-ng-model="customer.name" 
-								type="text" placeholder="Nombre" required/>
-					</div>
-				</div>
-
+			<div class="col-xs-12">
+				<label >Nombre </label>
 				<div>
-					<label>Información </label>
-					<div>
-						<input  name="info" data-ng-model="customer.info" 
-								type= "text" placeholder="Información" required/>
-
-					</div>
+					<input  name="name" data-ng-model="person.name" 
+							type="text" placeholder="Nombre" required/>
 				</div>
+			</div>
 
+			<div class="col-xs-12">
+				<label>Información </label>
 				<div>
-					<label>Skill </label>
-					<div>
-						<input  name="author" data-ng-model="customer.author" 
-								type= "text" placeholder="Skill" required/>
+					<input  name="info" data-ng-model="person.info" 
+							type= "text" placeholder="Información" required/>
+
+				</div>
+			</div>
+
+
+			<div class="col-xs-12">
+				<label>Skill </label>
+				<div id="skillCss">
+					<input  name="skill" type= "text" placeholder="Skill" ng-model="addSkill" required /> 
+					<a href="" class="glyphicon glyphicon-plus" ng-click="agrgarSkill(addSkill)" ></a>	<br>
+					<div class="col-xs-8">
+						<ul id="ulSkill">
+						    <li ng-repeat="f in skill" style="font:smaller" blur="submitToggle" class="col-xs-4 col-md-4">
+						    	<a href="" class="glyphicon glyphicon-minus" ng-click="skill.splice($index, 1)" ></a>
+						    	{{f.nSkill}}
+						    </li>
+						</ul>
 					</div>
 				</div>
+			</div>
 
+
+
+			<div class="col-xs-12">
+				<label>Archivos</label>
 				<div>
-					<label>Archivos</label>
 					<div>
-						<div>
-						    <div ng-file-drop ng-file-select ng-model="archivo.files" class="myButton" 
-						        ng-multiple="true" 
-						        accept="image/*,application/pdf">
-								<i class="glyphicon glyphicon-folder-open"></i>&nbsp;
-						        Seleccionar Archivos</div>
+					    <div ng-file-drop ng-file-select ng-model="archivo.files" class="myButton" 
+					        ng-multiple="true" accept="image/*,application/pdf" >
+							<i class="glyphicon glyphicon-folder-open"></i>&nbsp; Seleccionar Archivos
+					    </div>
 
-						    <i>(pueden ser multiples)</i>
-						    
-						    <ul>
-						        <li ng-repeat="f in archivo.files" style="font:smaller" blur="submitToggle">{{f.name}}</li>
-						    </ul>
+					    <i>(pueden ser multiples)</i>
 
-						</div>
+					    <ul>
+					        <li ng-repeat="f in archivo.files" style="font:smaller" blur="submitToggle">{{f.name}}</li>
+					    </ul>
+
 					</div>
 				</div>
-				
+			</div> 
+
+			<div class="col-xs-12"> <br>
+				<div class="col-xs-4">
+					<button data-ng-click="savePerson(person);"
+							ng-disabled="isClean() || myForm.$invalid"
+							class="btn btn-primary">Guardar</button>
+
+				</div>
+
 			</div>
 
 		</form>
-
 	</div>
 </div>
 

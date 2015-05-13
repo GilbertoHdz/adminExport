@@ -2,6 +2,8 @@
 
 var _ = require('lodash');
 var Persona = require('./persona.model');
+var Archivo = require('../archivo/archivo.model');
+var fs = require('fs');
 
 // Get list of personas
 exports.index = function(req, res) {
@@ -22,7 +24,29 @@ exports.show = function(req, res) {
 
 // Creates a new persona in the DB.
 exports.create = function(req, res) {
-  Persona.create(req.body, function(err, persona) {
+  var _idsDoc = [];
+
+  for (var i = 0, files = req.files.file.length; i < files; i++) {
+    var type = req.files.file[i].type;
+    var name = req.files.file[i].name;
+    var path = req.files.file[i].path;
+
+    var imgBuf = new Buffer(fs.readFileSync(path)).toString('base64');
+    var reqArchivo = {name:name , img: {data: imgBuf, contentType: type }}
+
+    var archivo = new Archivo(reqArchivo);
+        _idsDoc.push(archivo._id);
+
+      archivo.save(function(err, archivo){
+        if(err){ return next(err); }
+      });
+  };
+
+  var arrData = JSON.parse(req.body.data);
+      arrData.skills =  Object.keys(arrData.skills).map(function(k) { return arrData.skills[k].nSkill });
+      arrData['archivos'] = _idsDoc;
+    
+  Persona.create(arrData, function(err, persona) {
     if(err) { return handleError(res, err); }
     return res.json(201, persona);
   });

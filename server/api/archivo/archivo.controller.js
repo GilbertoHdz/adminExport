@@ -22,7 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new archivo in the DB.
 exports.create = function(req, res) {
-   
+   console.log(req);
   var file = req.files.file;
   var imgBuf = new Buffer(fs.readFileSync(file.path)).toString('base64');
       req.body = {name: file.name , img: {data: imgBuf, contentType: file.type }}

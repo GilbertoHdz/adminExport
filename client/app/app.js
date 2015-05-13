@@ -9,7 +9,8 @@ angular.module('appAdminApp', [
   'ui.bootstrap',
   'mgcrea.ngStrap', 
   'angularFileUpload',
-  'ngUpload'
+  'ngUpload',
+  'flow'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
