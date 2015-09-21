@@ -1,0 +1,80 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<style type="text/css" media="screen">
+
+/* Rounded avatars */
+.avatar {
+	width: 100px;
+	height: 100px;
+	float: left;
+    margin-top: 1em;
+    margin-left: 3em;
+    position: relative;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
+
+</style>
+
+<div class="container">
+
+	<br/>
+	<div class="row well">
+	
+		<form class="form-horizontal" role="form">
+		
+		  <div class="form-group">
+		    <img class="avatar col-xs-6"  ng-src="{{imageSrc}}" alt="" />
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-xs-2 control-label">Nombre</label>
+		    <div class="col-xs-8">
+		      	<label class="control-label">Nombre</label>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="ejemplo_password_3" class="col-xs-2 control-label">Apellidos</label>
+		    <div class="col-xs-8">
+		      	<label class="control-label">Apellidos</label>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-xs-2 control-label">Procedencia</label>
+		    <div class="col-xs-8">
+		     	<label class="control-label">Procedencia</label>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label for="ejemplo_password_3" class="col-xs-2 control-label">Institución</label>
+		    <div class="col-xs-8">
+		      	<label class="control-label">Institución</label>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-xs-2 control-label">Habilidades</label>
+		    <div class="col-xs-8">
+		      	<label class="control-label">Habilidades</label>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-xs-2 control-label">Idiomas</label>
+		    <div class="col-xs-8">
+		      	<label class="control-label">Idiomas</label>
+		    </div>
+		  </div>
+
+		</form>
+
+	</div>
+
+	<br/>
+	<a href="/list-persona">LISTA</a>
+</div>

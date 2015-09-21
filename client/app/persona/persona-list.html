@@ -1,1 +1,52 @@
-<h2>Lista Peopple</h2>
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<style type="text/css" media="screen">
+
+/* Rounded avatars */
+.avatar {
+	width: 100px;
+	height: 100px;
+	float: left;
+    margin-top: 1em;
+    margin-right: 1em;
+    position: relative;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
+
+</style>
+
+<div class="container">
+	<h2>Lista Peopple</h2>
+	<p>{{message}}</p>
+
+	<br><br>
+	<div class="col-md-12" data-ng-show="listaPersonas.length != 0">
+		<table class="table table-striped table-bordered" id="table1">
+			<thead>
+				<th>Avatar</th>
+				<th>Name&nbsp;</th>
+				<th>Info&nbsp;</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in listaPersonas">
+					<td><img ng-src="{{data.img}}" height="50" width="50" /></td>
+					<td>{{data.name}}</td>
+					<td>{{data.info}}</td>
+					
+					<td>
+						<a href="/list-detalle/{{data._id}}" class="btn">&nbsp;
+							<i class="glyphicon glyphicon-user"></i>&nbsp; Detalle
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br><br>
+	<a href="/persona">DATOS</a>
+</div>

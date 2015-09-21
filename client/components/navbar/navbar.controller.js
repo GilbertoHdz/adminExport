@@ -13,7 +13,7 @@ angular.module('appAdminApp')
       'link': '/archivo'
     },{
       'title': 'Datos',
-      'link': '/persona'
+      'link': '/list-persona'
     }];
 
     $scope.isCollapsed = true;
